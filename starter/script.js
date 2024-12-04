@@ -128,17 +128,25 @@ const jonas = {
         console.log(this); //this will point to the object itself
         console.log(2037 - this.year);
 
-        const self = this; 
-        /* The variable self is used to save the value of this from the outer context (the calcAge method) and make it available inside the isMillenial function. This is necessary because:
+// SOLUTION 1 WITH SELF
+       /*  const self = this; 
+        The variable self is used to save the value of this from the outer context (the calcAge method) and make it available inside the isMillenial function. This is necessary because:
         In a regular function (non-arrow function), this does not retain the context of the method where it is defined but takes the context of the call. In strict mode, this means that this is undefined in regular functions if they are not called as part of an object.
-        Saving the value of this in a variable like self allows access to the correct context, regardless of how the inner function is executed. */
+        Saving the value of this in a variable like self allows access to the correct context, regardless of how the inner function is executed. 
 
-        const isMillenial = function() {
-           /*  console.log(this);
-            console.log(this.year >= 1981 && this.year <= 1996); //this keyword is undefined */
-            console.log(self);
+            const isMillenial = function() {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996); //this keyword is undefined
+            // console.log(self);
             console.log(self.year >= 1981 && self.year <= 1996);
-        };
+        }; 
+        */
+// SOLUTION 2 WITH ARROW FUNCTION
+             const isMillenial = () => {
+                console.log(this);
+                console.log(this.year >= 1981 && this.year <= 1996); // the result is true because the arrow function uses the this keyword from the parent scope (jonas)
+        }; 
+
         isMillenial();
     },
 
