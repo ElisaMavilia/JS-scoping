@@ -96,7 +96,7 @@ calcArrow(1991);
 
 // inside of a method
 
-const jonas = {
+/* const jonas = {
     year: 1991,
     calcAge: function() {
         console.log(this); //this will point to the object itself
@@ -116,3 +116,34 @@ matilda.calcAge(); // in this case the this keyword will be matilda and not jona
 // ouside an object
 const f = jonas.calcAge;
 f(); //this is a regular function which is not attached to any object: in this case the this method will result in undefined, if in stric mode
+
+ */
+
+// var firstName = 'Matilda'; // in this case the var variable creates a property inside the window object
+
+const jonas = {
+    firstName: 'Jonas',
+    year: 1991,
+    calcAge: function() {
+        console.log(this); //this will point to the object itself
+        console.log(2037 - this.year);
+
+        const self = this; 
+        /* The variable self is used to save the value of this from the outer context (the calcAge method) and make it available inside the isMillenial function. This is necessary because:
+        In a regular function (non-arrow function), this does not retain the context of the method where it is defined but takes the context of the call. In strict mode, this means that this is undefined in regular functions if they are not called as part of an object.
+        Saving the value of this in a variable like self allows access to the correct context, regardless of how the inner function is executed. */
+
+        const isMillenial = function() {
+           /*  console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996); //this keyword is undefined */
+            console.log(self);
+            console.log(self.year >= 1981 && self.year <= 1996);
+        };
+        isMillenial();
+    },
+
+    greet: () => console.log(`Hey ${this.firstName}!`), // The result is undefined because the arrow function use the parent´s scope (in this case the global scope where the object jonas is located) It is better to not use the arrow function as a method but instead using a normal function expression
+}
+jonas.greet();
+jonas.calcAge();
+
