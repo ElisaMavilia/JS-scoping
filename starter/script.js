@@ -155,3 +155,17 @@ const jonas = {
 jonas.greet();
 jonas.calcAge();
 
+// ARGUMENTS KEYWORD
+/* The arguments keyword is a special feature in JavaScript that allows access to all arguments passed to a function, even if they have not been explicitly declared in the function's parameters. It is an array-like object (but not a true array) that contains all the arguments provided during a function call */
+const addExpr = function (a, b){
+    console.log(arguments);
+    return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+var addArrow = (a, b) => {
+    console.log(arguments);
+    return a + b;
+};
+addArrow(2, 5, 8);
