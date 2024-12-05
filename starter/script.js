@@ -189,3 +189,23 @@ const friend = me;
 friend.age = 27;
 console.log('Friend:', friend); //age output: 27
 console.log('Me:', me); // age output: 27 because me and firend actually point to the exact same object in the memory heap (same identifier/address)
+
+//Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+
+console.log(lastName, oldLastName); //output: they are different
+
+//Reference types (object)
+
+const jessica = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+};
+
+const marriedJessica = jessica; //we are coping the reference that points to the same object in the heap which entails that even if we change a property value the output of the two object is exactly the same 
+marriedJessica.lastName = 'Davis';
+console.log('Jessica:', jessica); //output of lastName: 'Davis'
+console.log('Married Jessica:',marriedJessica); //output of lastName: 'Davis'
