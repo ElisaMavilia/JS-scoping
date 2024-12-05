@@ -205,7 +205,22 @@ const jessica = {
     age: 27,
 };
 
-const marriedJessica = jessica; //we are coping the reference that points to the same object in the heap which entails that even if we change a property value the output of the two object is exactly the same 
+const marriedJessica = jessica; //we are coping the reference that points to the same object in the heap which entails that even if we change a property value, the output of the two object is exactly the same 
 marriedJessica.lastName = 'Davis';
 console.log('Jessica:', jessica); //output of lastName: 'Davis'
 console.log('Married Jessica:',marriedJessica); //output of lastName: 'Davis'
+
+//marriedJessica = {}; // it is an error because we are changing the reference in the stack.
+
+// Copying Object
+
+const jessica2 = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+};
+
+const jessicaCopy = Object.assign({}, jessica2); //the result will make the argument as the new object
+jessicaCopy.lastName ='Davis';
+console.log('Jessica:', jessica2); //output of lastName: 'Williams'
+console.log('Jessica copy:' ,jessicaCopy); //output of lastName: 'Davis'. We have created a real copied of the original and a new object is now created in the heap
