@@ -218,9 +218,20 @@ const jessica2 = {
     firstName: 'Jessica',
     lastName: 'Williams',
     age: 27,
+    family: ['Alice', 'Bob']
 };
 
+//Shallow copy
 const jessicaCopy = Object.assign({}, jessica2); //the result will make the argument as the new object
 jessicaCopy.lastName ='Davis';
 console.log('Jessica:', jessica2); //output of lastName: 'Williams'
 console.log('Jessica copy:' ,jessicaCopy); //output of lastName: 'Davis'. We have created a real copied of the original and a new object is now created in the heap
+
+//Manipulating an object -the array- inside an object created with the object.assing method: both the objects have a nested object that points to the same object in the memory heap which entails that if we change a property inside the nested object it is also gonna changed in the other one
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+console.log('Jessica:', jessica2); //output of the family property is the same for both the objects
+console.log('Jessica copy:' ,jessicaCopy); //output of the family property is the same for both the objects
+
+//Deep cloning: is possibile with an external library
