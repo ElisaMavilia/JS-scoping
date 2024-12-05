@@ -37,12 +37,12 @@ printAge(); // we cannot call this function in the global scope: ReferenceError
 
 
 // VARIABLES
-console.log(me);
+//console.log(me);
 //console.log(job); //error: the job variable is still in the temporal dead zone (before initialization)
 //console.log(year); //error: the job variable is still in the temporal dead zone (before initialization)
-var me = 'Jonas';
-let job = 'teacher';
-const year = 1991;
+//var me = 'Jonas';
+//let job = 'teacher';
+//const year = 1991;
 
 // FUNCTIONS
 /* console.log(addDecl(2, 3)); //we can call a function before is declareted in the code
@@ -121,12 +121,12 @@ f(); //this is a regular function which is not attached to any object: in this c
 
 // var firstName = 'Matilda'; // in this case the var variable creates a property inside the window object
 
-const jonas = {
+/* const jonas = {
     firstName: 'Jonas',
     year: 1991,
     calcAge: function() {
         console.log(this); //this will point to the object itself
-        console.log(2037 - this.year);
+        console.log(2037 - this.year); */
 
 // SOLUTION 1 WITH SELF
        /*  const self = this; 
@@ -142,9 +142,9 @@ const jonas = {
         }; 
         */
 // SOLUTION 2 WITH ARROW FUNCTION
-             const isMillenial = () => {
-                console.log(this);
-                console.log(this.year >= 1981 && this.year <= 1996); // the result is true because the arrow function uses the this keyword from the parent scope (jonas)
+    /*     const isMillenial = () => {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996); // the result is true because the arrow function uses the this keyword from the parent scope (jonas)
         }; 
 
         isMillenial();
@@ -153,11 +153,11 @@ const jonas = {
     greet: () => console.log(`Hey ${this.firstName}!`), // The result is undefined because the arrow function use the parent´s scope (in this case the global scope where the object jonas is located) It is better to not use the arrow function as a method but instead using a normal function expression
 }
 jonas.greet();
-jonas.calcAge();
+jonas.calcAge(); */
 
 // ARGUMENTS KEYWORD
 /* The arguments keyword is a special feature in JavaScript that allows access to all arguments passed to a function, even if they have not been explicitly declared in the function's parameters. It is an array-like object (but not a true array) that contains all the arguments provided during a function call */
-const addExpr = function (a, b){
+/* const addExpr = function (a, b){
     console.log(arguments);
     return a + b;
 };
@@ -168,4 +168,24 @@ var addArrow = (a, b) => {
     console.log(arguments);
     return a + b;
 };
-addArrow(2, 5, 8);
+addArrow(2, 5, 8); */
+
+// PRIMITIVE VS OBJECTS
+//Primitive
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+//Object
+const me = {
+    name: 'Jonas',
+    age: 30,
+};
+
+const friend = me;
+
+friend.age = 27;
+console.log('Friend:', friend); //age output: 27
+console.log('Me:', me); // age output: 27 because me and firend actually point to the exact same object in the memory heap (same identifier/address)
